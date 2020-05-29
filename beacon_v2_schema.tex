@@ -39,7 +39,17 @@
 %\label{org}
 
 
- % VARIANT BASIC
+
+ % DATASET
+ \section*{{\color{teal}Dataset}}
+ %Dataset of variants, either aggregated variant-level or case-level.
+ \begin{description}
+  	\item[datasetId] {\textsc{categorical value}} Dataset reference ID
+	\item[datasetName] {\textsc{categorical value}} Dataset name. Reference to source. e.g DECIPHER, DisGenNET
+	\item[datasetype] {\textsc{categorical value}} Dataset type: variant-level (aggregated) or case-level 
+  \end{description}
+
+ % VARIANT IDENTIFICATION
 \section*{{\color{teal}Variant Identification}}
 
 %This endpoint contains the query basic objects, where refseq refers to the Organism in section \ref{org} on page \pageref{org}
@@ -53,7 +63,7 @@
 %The assembly accession and version correspond univocally to a set of NCBI Reference Sequence (RefSeq) IDs for contigs and scaffolds belonging to the assembly version, such as chromosomes. 
 %For organism with single scaffold genomes, Genbank or Refseq assembly accessions will correspond to the full-length Refseq reference sequence accession  e.g "NC\_045512.2", which can be given in \textbf{refseqId}.
 %"GCA_000002325.2" (Nasonia vitripennis).  % Genbank ("MN908947.3") or 
- 	\item[refseqId] {\textsc{categorical value}} Reference sequence Refseq ID for genomic contiguous in which variant query coordinates are given, e.g "NC\_000009" for human chromosome 9. Alternatively, names, synonymous or aliases are accepted eg. "Chr9" when \textbf{assemblyId} is given. For organism with single scaffold the full length reference sequence Refseq IDs can be given here as an alternative to the assembly Id and version in \textbf{assemblyId}, e.g "NC\_045512.2" for SARS-CoV2 full-length genome reference sequence. 
+ 	\item[refseqId] {\textsc{categorical value}} Reference sequence Refseq ID and version for genomic contiguous in which variant query coordinates are given, e.g "NC\_000009" for human chromosome 9. Alternatively, names, synonymous or aliases are accepted eg. "Chr9" when \textbf{assemblyId} is given. For organism with single scaffold the full length reference sequence Refseq IDs can be given here as an alternative to the assembly Id and version in \textbf{assemblyId}, e.g "NC\_045512.2" for SARS-CoV2 full-length genome reference sequence. 
 	%Likewise, for full length genome sequences, full length RefSeq reference sequence Id e.g "NC\_045512.2") can be given here as an alternative to the assembly Id and version in \textbf{assemblyId}.
 	\item[start] {\textsc{numeric value}} Start position of variant
 	\item[end] {\textsc{numeric value}} End position of variant %(same as start for SNVs)
@@ -64,36 +74,60 @@
  \end{description}
  
  
- 
- % MAIN INDIVIDUAL
-\section*{{\color{teal} Main Individual}}
-This object contains info related to the individual from where the variants are found in a study. It includes taxon id and any other relevant information about it, including maybe links or id of genome assemblies and ref seqs associated to this species that are available in the Beacon and that are used for variant identification (location)
+ % VARIANT ANNOTATION
+  \section*{ {\color{teal} Variant Annotation}}
+  
+  \begin{description}
+	\item[\textbf{variantId}] {\textsc{alphanumeric value}} ID referencing the variant in beacon (internal ID)
+	\item[\textbf{variantAlternativeId}] {\textsc{List of alphanumeric value(s)}} Cross-referencing ID(s) (CURIE) for previously described variants (e.g. clinVarId, ClinGen, COSMIC), e.g : "VCV000055583.1", "rs80356868", "CA003602"
+	\item[\textbf{genomicHGVSId}]  {\textsc{alphanumeric value}} HGVSId descriptor at genomic level (recommended, referred to genome assembly defined in Variant Basic), e.g "NC\_000017.10:g.41199678C$>$A"
+	\item[\textbf{transcriptHGVSId}] {\textsc{List of alphanumeric value(s)}} HGVSId descriptor at transcript level : "NC\_000023.10(NM\_ 004006.2):c.357+1G%>%A"
+	\item[\textbf{proteinHGVSId}] {\textsc{List of alphanumeric value(s)}} (List of) HGVSId descriptor(s) at protein level (for protein-altering variants), e.g "NP\_009225.1:p.Glu1817Ter" or LRG\_199p1:p.Val25Gly (preferred)
+	\item[genomicRegion] {\textsc{categorical value (ontology label)}} (List of) Classification(s) of the variant according to the genomic region affected (all that apply). Value from \href{link}{Sequence Ontology (SO) (SO:TBD)}, e.g "intergenic", "5UTR", "3UTR", "coding" %coding: single-gene (exonic, intronic), coding: in overlapping genes (exonic, intronic), coding: spanning multiple genes, multiple genes, e.g ?coding: single gene?
+	\item[genomicFeatures] Genomic feature(s) affected by the variant. (List of:)
+	\begin{itemize}
+			\item[]  \textbf{class} {\textsc{categorical value (ontology label)}} Class of genomic region affected by the variant eg "gene" "protein coding transcript", "untranslated region", "non-coding transcript"
+			\item[]  \textbf{featureID} {\textsc{(alphanumeric value)}} ID /accession/name of genomic region affected by the variant, matching class in \textbf{class}, e.g "TP53", "GeneID:43740578"
+	\end{itemize} 
+	\item[annotationToolVersion] {\textsc{alphanumeric value}} Tool used for annotation and prediction of variant effects e.g "SnpEffVersion=4.3t (build 2017-11-24 1018)"
+	\item[molecularEffect] {\textsc{alphanumeric value}} (List of) Predicted effect at nucleotide level eg. "STOP\_GAINED"
+	\item[molecularConsequence]  {\textsc{categorical value (ontology label)}} (List of) Predicted effect at protein level for protein affecting variants eg. "nonsense" , "missense"
+	\item[aminoacidChange]  {\textsc{categorical value (ontology label)}} (List of) Change(s) at aminoacid level for protein affecting variants eg. "V304*"
+	
+		%\item[\textbf{info}] 
+ \end{description}
+
+
+
+ % SUBJECT
+\section*{{\color{teal} Subject}}
+This object contains info related to the subject from where the variants are found in a study. It includes taxon id and any other relevant information about it, including maybe links or id of genome assemblies and ref seqs associated to this species that are available in the Beacon and that are used for variant identification (location)
 \begin{description}
-	\item[taxonId] {\textsc{categorical value (ontology label)}} Reference taxon ID for individual organism i.e human, animal or plant, etc.
-	\item[assemblyIds]{\textsc{categorical value}} List of available assembly Ids for this individual's taxon Id
-	\item[refseqIds]{\textsc{categorical value}} List of available refseq Ids for this individual's taxon Id
+	%\item[assemblyIds]{\textsc{categorical value}} List of available assembly Ids for this subject's taxon Id
+	%\item[refseqIds]{\textsc{categorical value}} List of available refseq Ids for this subject's taxon Id
 	%\item[taxonId] If cell line? 
-	\item[\textbf{datasetId}] {\textsc{alphanumeric value}} Reference ID of dataset (external accession or internal ID)
-	\item[\textbf{individualId}]  {\textsc{alphanumeric value}} Reference ID of individual (external accession or internal ID)
-	\item[sex] {\textsc{categorical value (ontology label)}} Sex of individual. Value from \href{link}{NCIT General Qualifier} ontology (NCIT:C27993): "UNKNOWN" (not assessed or not available) (NCIT:C17998), "FEMALE" (NCIT:C46113), "MALE", (NCIT:C46112) or "OTHER SEX" (NCIT:C45908)
-	\item[\textbf{ethnicity}] {\textsc{categorical value (ontology label)}} Ethnic background of individual. Value from \href{link}{NCIT Race ontology (NCIT:C17049)}. e.g "Latin American" (NCIT:C126531)
-	\item[geographicOrigin] {\textsc{categorical value (ontology label)}} Individual's country or region of origin (birthplace or residence place regardless of ethnic origin). Value from \href{link}{GAZ Geographic Location ontology (GAZ:00000448)}, e.g. "United States of America" (GAZ:00002459)
-	\item[\textbf{phenotypicFeatures}] Phenotypic feature(s) observed in the individual, defined by phenotype, age of onset and level/ severity. (List of:)
+	%\item[\textbf{datasetId}] {\textsc{alphanumeric value}} Reference ID of dataset (external accession or internal ID)
+	\item[\textbf{subjectId}]  {\textsc{alphanumeric value}} Reference ID of subject (external accession or internal ID)
+	\item[taxonId] {\textsc{categorical value (ontology label)}} Reference taxon ID for subject organism i.e human, animal or plant, etc.
+	\item[sex] {\textsc{categorical value (ontology label)}} Sex of subject. Value from \href{link}{NCIT General Qualifier} ontology (NCIT:C27993): "UNKNOWN" (not assessed or not available) (NCIT:C17998), "FEMALE" (NCIT:C46113), "MALE", (NCIT:C46112) or "OTHER SEX" (NCIT:C45908)
+	\item[\textbf{ethnicity}] {\textsc{categorical value (ontology label)}} Ethnic background of subject. Value from \href{link}{NCIT Race ontology (NCIT:C17049)}. e.g "Latin American" (NCIT:C126531)
+	\item[geographicOrigin] {\textsc{categorical value (ontology label)}} Subject's country or region of origin (birthplace or residence place regardless of ethnic origin). Value from \href{link}{GAZ Geographic Location ontology (GAZ:00000448)}, e.g. "United States of America" (GAZ:00002459)
+	\item[\textbf{phenotypicFeatures}] Phenotypic feature(s) observed in the subject, defined by phenotype, age of onset and level/ severity. (List of:)
 	\begin{itemize}
 			\item[] \textbf{phenotypeId} {\textsc{categorical value (ontology label)}} Phenotypic feature observed. Value from \href{link}{Human Phenotype Ontology (HPO)} or other phenotype ontology
 			\item[] \textbf{dateOfOnset} {\textsc{alphanumeric value}} Date of onset/observation of phenotype, in \href{link}{(ISO8601 duration format)}  
-			\item[] \textbf{ageOfOnset} Individual age at onset/observation of phenotype
+			\item[] \textbf{ageOfOnset} Subject's age at onset/observation of phenotype
 			\begin{itemize}
 			\item[] \textbf{age} {\textsc{alphanumeric}} Age, in \href{link}{(ISO8601 duration format)}  
 			\item[] \textbf{ageGroup} {\textsc{categorical value (ontology label)}} Age group value, from \href{link}{NCIT Age Group ontology}, e.g. "NCIT:C27954" (Adolescent)
 			\end{itemize}
 			\item[] \textbf{level/severity}  {\textsc{categorical value (ontology label)}} Level/severity when and as applicable to phenotype observed. Value from \href{link}{TBD}, e.g "mild"
 	\end{itemize}
-	\item[diseases] Disease(s) been diagnosed to the individual, defined by disease ID, age of onset, stage, level/severity, outcome and the presence of family history. (List of:)
+	\item[diseases] Disease(s) been diagnosed to the subject, defined by disease ID, age of onset, stage, level/severity, outcome and the presence of family history. (List of:)
 	\begin{itemize}
 			\item[]  \textbf{diseaseId} {\textsc{categorical value (disease code/ontology label}} Disease ID. Value from \href{link}{ICD10 disease codes} or ontology terms from disease ontologies such as HPO, OMIM, Orphanet, MONDO. e.g. "lactose intolerance" (HP:0004789, ICD10CM:E73)
 			\item[] \textbf{dateOfOnset} {\textsc{alphanumeric value (ISO8601 duration format)}} Date of onset/diagnosis of disease
-			\item[]  \textbf{ageOfOnset} Individual age at onset/ diagnosis of disease
+			\item[]  \textbf{ageOfOnset} Subject's age at onset/ diagnosis of disease
 			\begin{itemize}
 			\item[] \textbf{age} {\textsc{alphanumeric}} Age, in \href{link}{(ISO8601 duration format)}  
 			\item[] \textbf{ageGroup} {\textsc{categorical value (ontology label)}} Age group value, from \href{link}{NCIT Age Group ontology}, e.g. "NCIT:C27954" (Adolescent)
@@ -104,11 +138,11 @@ This object contains info related to the individual from where the variants are 
 			\item[] \textbf{familyHistory} {\textsc{boolean}} indicating determined or self-reported presence of family history of the disease
 	\end{itemize}
 
-	\item[\textbf{treatments}] Treatment(s) been prescribed/administered to individual, defined by treatment ID), date and age of onset, dose, schedule and duration. (List of:)
+	\item[\textbf{treatments}] Treatment(s) been prescribed/administered to subject, defined by treatment ID), date and age of onset, dose, schedule and duration. (List of:)
 	\begin{itemize}
 			\item[] \textbf{treatmentId} {\textsc{categorical value (ontology label)}} Treatment ID. Value from \href{link}{TBD}
 			\item[] \textbf{dateAtOnset} {\textsc{alphanumeric value}} Date of the beginning of treatment, in \href{link}{(ISO8601 duration format)}  
-			\item[] \textbf{ageAtOnset} Individual age at the beginning of treatment
+			\item[] \textbf{ageAtOnset} Subject's age at the beginning of treatment
 			\begin{itemize}
 			\item[] \textbf{age} {\textsc{alphanumeric}} Age, in \href{link}{(ISO8601 duration format)}  
 			\item[] \textbf{ageGroup} {\textsc{categorical value (ontology label)}} Age group value, from \href{link}{NCIT Age Group ontology}, e.g. "NCIT:C27954" (Adolescent)
@@ -119,10 +153,10 @@ This object contains info related to the individual from where the variants are 
 			\item[] \textbf{duration} {\textsc{alphanumeric value}} Treatment duration, in \href{link}{(ISO8601 duration format)}  
 	\end{itemize} 
 	
-	\item[\textbf{interventions}] Intervention(s) been practiced on individual, defined by treatment ID), date and age of onset, dose, schedule and duration. (List of:)
+	\item[\textbf{interventions}] Intervention(s) been practiced on subject, defined by treatment ID), date and age of onset, dose, schedule and duration. (List of:)
 	\begin{itemize}
 			\item[] \textbf{interventionId} {\textsc{categorical value (ontology label)}} Intervention ID. Value from \href{link}{TBD}
-			\item[] \textbf{date} {\textsc{alphanumeric value}} Date of intervention, in \href{link}{(ISO8601 duration format)}			\item[] \textbf{ageAtIntervention} Individual age at the date of intervention in age or age range
+			\item[] \textbf{date} {\textsc{alphanumeric value}} Date of intervention, in \href{link}{(ISO8601 duration format)}			\item[] \textbf{ageAtIntervention} Subject's age at the date of intervention in age or age range
 			\begin{itemize}
 			\item[] \textbf{age} {\textsc{alphanumeric}} Age, in \href{link}{(ISO8601 duration format)}  
 			\item[] \textbf{ageGroup} {\textsc{categorical value (ontology label)}} Age group value, from \href{link}{NCIT Age Group ontology}, e.g. "NCIT:C27954" (Adolescent)
@@ -147,11 +181,11 @@ This object contains info related to the individual from where the variants are 
   
   \begin{description}
 	\item[\textbf{biosampleId}]  {\textsc{alphanumeric value}} ID referencing the biosample (external accession )
-	\item[\textbf{individualId}] ref to Individual individualId
+	\item[\textbf{subjectId}] ref to Subject's subjectId
 	\item[\textbf{description}]  {\textsc{free text}} Any relevant info about the biosample that does not fit in any field in the schema
 	\item[\textbf{biosampleStatus}] {\textsc{categorical value (ontology label)}} from  \href{link}{Experimental Factor Ontology (EFO) Material Sample ontology} (OBI:0000747) Classification of the sample in "abnormal sample "(EFO:0009655) or "reference sample" (EFO:0009654)
 	\item[collectionDate] {\textsc{alphanumeric value(ISO8601 duration format)}} Date of biosample collection
-	\item[\textbf{individualAgeAtCollection}] {\textsc{alphanumeric value (ISO8601 duration format)}} Individual age at  the time of sample collection
+	\item[\textbf{subjectAgeAtCollection}] {\textsc{alphanumeric value (ISO8601 duration format)}} Subject's age at  the time of sample collection
 	\item[\textbf{sampleOriginType}] {\textsc{categorical value (ontology label)}} Category of sample origin e.g "organism primary tissue", "organism xenograft", "organism-derived fluid", "cell culture", "environmental sample"
 	\item[sampleOriginDetail] {\textsc{categorical value (ontology label)}} from \href{link}{Uber-anatomy ontology (UBERON)} or \href{link}{BRENDA tissue / enzyme
 source (BTO)} Specific instance of sample origin matching the category set in sampleOriginType e.g "HEK293T", "nasopharynx"
@@ -166,8 +200,8 @@ source (BTO)} Specific instance of sample origin matching the category set in sa
  
 
 
-   % Run-Analysis
-   \section*{ {\color{teal} Run-Analysis}}
+   % RUN
+   \section*{ {\color{teal} Run}}
   
   \begin{description}
 	\item[runId] {\textsc{alphanumeric value}}  Internal or external accession e.g "SRR10903401"
@@ -177,7 +211,17 @@ source (BTO)} Specific instance of sample origin matching the category set in sa
 	\item[libraryLayout] {\textsc{categorical value (ontology label)}}  Sequencing library layout e.g "PAIRED", "SINGLE"
 	\item[platform] {\textsc{categorical value (ontology label)}} Sequencing platform group e.g "Illumina", "Nanopore"
 	\item[platformModel] {\textsc{categorical value (ontology label)}} Sequencing platform model e.g "Illumina MiSeq", "GridION"
-	 \item[aligner]  {\textsc{categorical value (ontology label)}} Mapping/Alignment software e.g bwa
+ \end{description}
+ 
+ 
+   % ANALYSIS
+ 
+   \section*{ {\color{teal} Analysis}}
+  
+  \begin{description}
+	\item[runId] {\textsc{alphanumeric value}}  Internal or external accession e.g "SRR10903401"
+	%\item[pipeline]  {\textsc{categorical value (ontology label)}} Analysis pipeline and version
+	\item[aligner]  {\textsc{categorical value (ontology label)}} Mapping/Alignment software e.g bwa
 	  \item[variantCaller]  {\textsc{categorical value (ontology label)}} Variant calling software/ pipeline e.g "GATK vxxx" % or new endpoint for Experiment/Dataset?
 	%\item[\textbf{info}] 
  \end{description}
@@ -189,17 +233,19 @@ source (BTO)} Specific instance of sample origin matching the category set in sa
   
   \begin{description}
   	\item[\textbf{variantId}]  {\textsc{alphanumeric value}} 
-	\item[\textbf{runid}] ref Run runId
-	\item[\textbf{biosampleId}] ref Biosample biosampleId
-	\item[\textbf{individualId}] ref Individual IndividualId
-	\item[variantFrequency] {\textsc{numeric value}} Variant frequency in sample, as in AF field in VCF or in dataset for aggregated data such as Family multi-VCF. Other custom values such as variant frequency in dataset or across datasets can be calculated on the fly. 
+	\item[\textbf{analysisId}] ref Run runId
+	%\item[\textbf{biosampleId}] ref Biosample biosampleId
+	\item[\textbf{subjectId}] ref Subject's subjectId
+	\item[variantFrequency] {\textsc{numeric value}} Variant frequency in sample, as in AF field in VCF for case-level datasets. Frequency in dataset for aggregated variant-level datasets.
+	%such as Family multi-VCF. 
+	%%Other custom values such as variant frequency in dataset or across datasets, major allele frequency for aggregated datasets.
 	\item[\textbf{zigosity}] {\textsc{categorical value (ontology label)}} Zigosity in which variant is present in the sample from the \href{link}{Zigosity Ontology (GENO:0000133}) , e.g "heterozygous" (GENO:0000135)
 	\item[\textbf{alleleOrigin}] {\textsc{categorical value (ontology label)}} Allele origin of variant in sample from the \href{link}{Variant Origin (SO:0001762)}. Categories are "somatic variant", "germline variant", "maternal variant", "paternal variant",  "de novo variant", "pedigree specific variant", "population specific variant". Corresponds to Variant Inheritance in FHIR.
 	\item[\textbf{phenotypicEffect}]  {\textsc{categorical value (ontology label)}} Annotated effect on disease. list of:
 	\begin{itemize}
 				\item[] \textbf{phenotypeId} {\textsc{categorical value (ontology label)}} Descriptor of phenotype found associated in this study
 				\item[] \textbf{phenotypeEffect} {\textsc{categorical value (ontology label)}} Phenotypic effect classification determined in this study
-				\item[] \textbf{evidenceType} {\textsc{categorical value (ontology label)}} Type of evidence supporting variant-phenotype association from the \href{http://purl.obolibrary.org/obo/eco.owl}{Evidence \& Conclusion Ontology (ECO)}
+				\item[] \textbf{evidenceType} {\textsc{categorical value (ontology label)}} Type of evidence supporting variant-phenotype association from the \href{http://purl.obolibrary.org/obo/eco.owl}{Evidence \& Conclusion Ontology (ECO)} e.g "experimental evidence"
 	\end{itemize} 
 \item[\textbf{clinicalRelevance}]  {\textsc{categorical value (ontology label)}} Annotated effect on disease. list of:
 	\begin{itemize}
@@ -212,51 +258,40 @@ source (BTO)} Specific instance of sample origin matching the category set in sa
  
  
  
-    % VARIANT ANNOTATION
-  \section*{ {\color{teal} Variant Annotation}}
+    	
+	% INTERPRETATION
+\section*{ {\color{teal} Variant Interpretation}}
   
   \begin{description}
-	\item[\textbf{variantId}] {\textsc{alphanumeric value}} ID referencing the variant in beacon (internal ID)
-	\item[\textbf{variantAlternativeId}] {\textsc{List of alphanumeric value(s)}} Cross-referencing ID(s) (CURIE) for previously described variants (e.g. clinVarId, ClinGen, COSMIC), e.g : "VCV000055583.1", "rs80356868", "CA003602"
-	\item[\textbf{genomicHGVSId}]  {\textsc{alphanumeric value}} HGVSId descriptor at genomic level (recommended, referred to genome assembly defined in Variant Basic), e.g "NC\_000017.10:g.41199678C$>$A"
-	\item[\textbf{transcriptHGVSId}] {\textsc{List of alphanumeric value(s)}} HGVSId descriptor at transcript level : "NC\_000023.10(NM\_ 004006.2):c.357+1G%>%A"
-	\item[\textbf{proteinHGVSId}] {\textsc{List of alphanumeric value(s)}} (List of) HGVSId descriptor(s) at protein level (for protein-altering variants), e.g "NP\_009225.1:p.Glu1817Ter" or LRG\_199p1:p.Val25Gly (preferred)
-	\item[genomicRegion] {\textsc{categorical value (ontology label)}} (List of) Classification(s) of the variant according to the genomic region affected (all that apply). Value from \href{link}{Sequence Ontology (SO) (SO:TBD)}, e.g "intergenic", "5UTR", "3UTR", "coding" %coding: single-gene (exonic, intronic), coding: in overlapping genes (exonic, intronic), coding: spanning multiple genes, multiple genes, e.g ?coding: single gene?
-	\item[genomicFeatures] Genomic feature(s) affected by the variant. (List of:)
-	\begin{itemize}
-			\item[]  \textbf{class} {\textsc{categorical value (ontology label)}} Class of genomic region affected by the variant eg "gene" "protein coding transcript", "untranslated region", "non-coding transcript"
-			\item[]  \textbf{featureID} {\textsc{(alphanumeric value)}} ID /accession/name of genomic region affected by the variant, matching class in \textbf{class}, e.g "TP53", "GeneID:43740578"
-	
-	\end{itemize} 
-	\item[annotationToolVersion] {\textsc{alphanumeric value}} Tool used for annotation and prediction of variant effects e.g "SnpEffVersion=4.3t (build 2017-11-24 1018)"
-	\item[molecularEffect] {\textsc{alphanumeric value}} (List of) Predicted effect at nucleotide level eg. "STOP\_GAINED"
-	\item[molecularConsequence]  {\textsc{categorical value (ontology label)}} (List of) Predicted effect at protein level for protein affecting variants eg. "nonsense" , "missense"
-	\item[aminoacidChange]  {\textsc{categorical value (ontology label)}} (List of) Change(s) at aminoacid level for protein affecting variants eg. "V304*"
+  	\item[\textbf{variantId}] {\textsc{alphanumeric value}} ID referencing the variant in beacon (internal ID)
+	\item[\textbf{datasetId}] {\textsc{alphanumeric value}} ID referencing the dataset from variant interpretation
 	\item[\textbf{phenotypicEffect}] (List of) Annotated effects on any phenotypic feature other than a disease. (List of:)
-		\begin{itemize}
+	\begin{itemize}
 				\item[] \textbf{phenotypeId} {\textsc{categorical value (ontology label)}} Descriptor of phenotype associated
 				\item[] \textbf{phenotypeEffect} {\textsc{categorical value (ontology label)}} Phenotypic effect classification
+				\item[] \textbf{alleleOrigin} {\textsc{categorical value(s) (ontology label)}} (List of) Annotation(s) on allele origins in which the variant has been found in association to condition. Categories are "somatic variant", "germline variant", "maternal variant", "paternal variant",  "de novo variant", "pedigree specific variant", "population specific variant". Corresponds to Variant Inheritance in FHIR.
 				\item[] \textbf{references} (List of) PMID(s)
-		\end{itemize} 
+	\end{itemize} 
 	\item[\textbf{clinicalRelevance}] Annotated effect on disease. (List of:)
 			\begin{itemize}
 				\item[] \textbf{diseaseId} {\textsc{categorical value (ontology label)}} Descriptor of disease associated
 				\item[] \textbf{clinicalEffect} {\textsc{categorical value (ontology label)}} Clinical effect classification
+				\item[] \textbf{alleleOrigin} {\textsc{categorical value(s) (ontology label)}} (List of) Annotation(s) on allele origins in which the variant has been in association to condition. Categories are "somatic variant", "germline variant", "maternal variant", "paternal variant",  "de novo variant", "pedigree specific variant", "population specific variant". Corresponds to Variant Inheritance in FHIR.
 				\item[] \textbf{references} (List of) PMID(s)
-		\end{itemize} 
-	\item[\textbf{alleleOrigin}] {\textsc{categorical value(s) (ontology label)}} (List of) Annotation(s) on allele origins in which the variant has been found e.g "somatic", "de novo"
+		 \end{itemize} 
+
 	%\item[\textbf{info}] 
  \end{description}
  
 
 
   
-   % INTERACTOR INDIVIDUAL eg. host, pathogen, comensal, etc
+   % INTERACTOR INDIVIDUAL eg. host, pathogen, commensal, etc
  \section*{{\color{teal} Interactor}}
-This is an individual whose metadata/ phenotypic data is collected in association with the Main Individual, but which is not itself the sequenced individual.
+This is an organism/agent whose metadata/ phenotypic data is collected in association with the Subject, but which is not sequenced itself. It accounts for 'extended phenotype' of variants in other organisms/agents than the one harboring them.
 \begin{description}
-	\item[relationType] {\textsc{categorical value (ontology label)}} Type of relation with Primary individual e.g "host", "pathogen", "commensal"
-	\item[[...]] All the rest of objects as Main Individual, some of which may not apply and be left empty
+	\item[relationType] {\textsc{categorical value (ontology label)}} Type of relation with Subject e.g "host", "pathogen", "commensal", etc
+	\item[[...]] All the rest of objects from Subject
 \end{description}
  
  

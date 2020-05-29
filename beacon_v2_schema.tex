@@ -55,6 +55,7 @@
 %This endpoint contains the query basic objects, where refseq refers to the Organism in section \ref{org} on page \pageref{org}
 
 \begin{description}
+	\item[\textbf{variantId}] {\textsc{alphanumeric value}} ID referencing the variant in beacon (internal ID)
 	\item[assemblyId] {\textsc{categorical value}} Genomic assembly accession and version as RefSqeq assembly accessions (e.g "GCG\_000001405.39"). Alternatively, an assembly name or synonym such as UCSC Genome Browser assembly (e.g "hg38") or Genome Reference consortium Human (e.g GHCh38.p13") names can be given as long as they are accompanied with their versions. 
 %and version as Genbank (e.g "GCA\_000001405.28") 
 %(A table with the correspondence between names/synonyms and assembly Ids supported must be in backend)
@@ -79,7 +80,7 @@
   
   \begin{description}
 	\item[\textbf{variantId}] {\textsc{alphanumeric value}} ID referencing the variant in beacon (internal ID)
-	\item[\textbf{variantAlternativeId}] {\textsc{List of alphanumeric value(s)}} Cross-referencing ID(s) (CURIE) for previously described variants (e.g. clinVarId, ClinGen, COSMIC), e.g : "VCV000055583.1", "rs80356868", "CA003602"
+	\item[\textbf{variantAlternativeId}] {\textsc{(List of) alphanumeric value(s)}} Cross-referencing ID(s) (CURIE(s)) for the variant in the original databases or variant-level (aggregated) databases for previously described variants (e.g. clinVarId, ClinGen, COSMIC), e.g : "VCV000055583.1", "rs80356868", "CA003602"
 	\item[\textbf{genomicHGVSId}]  {\textsc{alphanumeric value}} HGVSId descriptor at genomic level (recommended, referred to genome assembly defined in Variant Basic), e.g "NC\_000017.10:g.41199678C$>$A"
 	\item[\textbf{transcriptHGVSId}] {\textsc{List of alphanumeric value(s)}} HGVSId descriptor at transcript level : "NC\_000023.10(NM\_ 004006.2):c.357+1G%>%A"
 	\item[\textbf{proteinHGVSId}] {\textsc{List of alphanumeric value(s)}} (List of) HGVSId descriptor(s) at protein level (for protein-altering variants), e.g "NP\_009225.1:p.Glu1817Ter" or LRG\_199p1:p.Val25Gly (preferred)
@@ -205,7 +206,8 @@ source (BTO)} Specific instance of sample origin matching the category set in sa
   
   \begin{description}
 	\item[runId] {\textsc{alphanumeric value}}  Internal or external accession e.g "SRR10903401"
-	\item[biosampleId] {\textsc{alphanumeric value}}  Reference to sample 	\item[librarySource] {\textsc{categorical value (ontology label)}}  Sequencing library source e.g "Metagenomic", "Viral RNA"
+	\item[biosampleId] {\textsc{alphanumeric value}}  Reference to sample 
+	\item[\textbf{variantId}] {\textsc{timestamp}} Date at which run was performed, in \href{link}{(ISO8601 duration format)}  	\item[librarySource] {\textsc{categorical value (ontology label)}}  Sequencing library source e.g "Metagenomic", "Viral RNA"
 	\item[libraryStrategy]  {\textsc{categorical value (ontology label)}} Sequencing library strategy e.g "WGS"
 	\item[librarySelection] {\textsc{categorical value (ontology label)}} Selection method for sequencing library preparation e.g "RANDOM", "RT-PCR"
 	\item[libraryLayout] {\textsc{categorical value (ontology label)}}  Sequencing library layout e.g "PAIRED", "SINGLE"
@@ -220,7 +222,9 @@ source (BTO)} Specific instance of sample origin matching the category set in sa
   
   \begin{description}
 	\item[runId] {\textsc{alphanumeric value}}  Internal or external accession e.g "SRR10903401"
-	%\item[pipeline]  {\textsc{categorical value (ontology label)}} Analysis pipeline and version
+	\item[\textbf{variantId}] {\textsc{timestamp}} Date at which analysis was performed,  in \href{link}{(ISO8601 duration format)}  
+	\item[pipelineName]  {\textsc{categorical value}} Analysis pipeline and version if a standardized pipeline was used
+	\item[pipelineRef]  Link to Analysis pipeline resource
 	\item[aligner]  {\textsc{categorical value (ontology label)}} Mapping/Alignment software e.g bwa
 	  \item[variantCaller]  {\textsc{categorical value (ontology label)}} Variant calling software/ pipeline e.g "GATK vxxx" % or new endpoint for Experiment/Dataset?
 	%\item[\textbf{info}] 

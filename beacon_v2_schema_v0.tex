@@ -1,0 +1,148 @@
+\documentclass[a4paper, 10pt]{article}        %\documentclass{} slides report proc book 
+\usepackage[margin=1in]{geometry}
+\usepackage[]{graphicx}
+%\usepackage[]{color}
+%\definecolor{gray}{rgb}{0.345, 0.345, 0.345}
+
+\usepackage[hyperref]{xcolor}
+\definecolor{teal}{RGB}{0, 128, 128}
+
+
+\usepackage{hyperref, xcolor}
+\hypersetup{
+        colorlinks = true,
+        allcolors={magenta},
+        linkcolor={teal}
+       %urlcolor=[rgb]{0,128,128},
+     }
+
+
+\usepackage{nameref}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\title{Beacon v.2 default schemas v0.1}
+%\author{{\color{teal}Claudia Vasallo}}
+\date{} %\today
+\maketitle
+%\pagenumbering{roman}
+%\tableofcontents
+%\newpage
+%\pagenumbering{arabic}
+
+%\paragraph{
+%This spec includes the different response endpoints for general beacon queries. Note that that still response elements will be slightly different depending of query type and that responses can also be customized to limit response elements. Info fields contain data that can be used by filters but they are shown as a compound object in response (if requested by user). } 
+
+ 
+ % VARIANT IDENTIFICATION
+\section*{{\color{teal}Variant Identification}}
+
+%This endpoint contains the query basic objects, where refseq refers to the Organism in section \ref{org} on page \pageref{org}
+
+\begin{description}
+	%\item[\textbf{variantId}] {\textsc{alphanumeric value}} Variant identifier (internal ID)
+	\item[assemblyId] {\textsc{categorical value}} Genomic assembly accession as Genome Reference consortium Human name, e.g. "GRCh38" %and version 
+	%\item[assemblyId] {\textsc{categorical value}} Genomic assembly accession and version as RefSqeq assembly accessions (e.g "GCG\_000001405.39"). Alternatively, a versioned assembly name or synonym such as UCSC Genome Browser assembly (e.g "hg38") or Genome Reference consortium Human names (e.g GHCh38.p13"). 
+\item[chromosome] {\textsc{categorical value}} Chromosome name, e.g. "9", "X", "MT"
+%\item[refseqId] {\textsc{categorical value}} Reference sequence Refseq ID and version for genomic contiguous in which variant query coordinates are given, e.g "NC\_000009" for human chromosome 9. Alternatively, a name, synonymous or alias, eg. "Chr9" when \textbf{assemblyId} is given. For organism with single scaffold the full length reference sequence Refseq IDs can be given here as an alternative to the assembly Id and version in \textbf{assemblyId}, e.g "NC\_045512.2" for SARS-CoV2 full-length genome reference sequence. 
+	\item[start] {\textsc{numeric value}} Start position of variant
+	\item[end] {\textsc{numeric value}} End position of variant %(same as start for SNVs)
+	\item[referenceBases] {\textsc{alphanumeric value}} Reference sequence in start-end coordinates
+	\item[alternateBases] {\textsc{alphanumeric value}} Alternate sequence in start-end coordinates
+	\item[variantType] {\textsc{categorical value (ontology label)}} from \href{http://www.sequenceontology.org}{Sequence Ontology} describing the type of variant, e.g. "SNV" (SO:0001483), "structural variant"  (SO:0001537) % "structural alteration" (SO:0001785) %
+	%\item[\textbf{info}] 
+ \end{description}
+ 
+
+ % INDIVIDUAL
+\section*{{\color{teal} Individual}}
+\begin{description}
+	\item[\textbf{individualId}]  {\textsc{alphanumeric value}} Individual identifier (external accession or internal ID)
+	%\item[taxonId] {\textsc{categorical value (ontology label)}} Reference taxon ID for subject organism i.e human, animal or plant, etc.
+	\item[sex] {\textsc{categorical value (ontology label)}} Sex of individual. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C27993&viewMode=All&siblings=false}{NCIT General Qualifier (NCIT:C27993)} ontology: "UNKNOWN" (not assessed or not available) (NCIT:C17998), "FEMALE" (NCIT:C46113), "MALE", (NCIT:C46112) or "OTHER SEX" (NCIT:C45908)
+	\item[\textbf{ethnicity}] {\textsc{categorical value (ontology label)}} Ethnic background of individual. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17049}{NCIT Race ontology (NCIT:C17049)}, e.g. "Latin American" (NCIT:C126531)
+	\item[geographicOrigin] {\textsc{categorical value (ontology label)}} Individual's country or region of origin (birthplace or residence place regardless of ethnic origin). Value from \href{https://www.ebi.ac.uk/ols/ontologies/gaz/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGAZ_00000448}{GAZ Geographic Location ontology (GAZ:00000448)}, e.g. "United States of America" (GAZ:00002459)
+	\item[diseases] (List of) disease(s) been diagnosed to the individual, defined by disease ID, age of onset, stage and the presence of family history
+	\begin{itemize}
+			\item[]  \textbf{diseaseId} {\textsc{categorical value (disease code/ontology label)}} Disease identifier. Value from \href{https://www.who.int/classifications/icd/en/}{ICD10 disease codes} or ontology terms from disease ontologies such as HPO, OMIM, Orphanet, MONDO, e.g. "lactose intolerance" (HP:0004789)
+			\item[]  \textbf{ageOfOnset} Individual's age at onset/ diagnosis of disease
+			\begin{itemize}
+			\item[] \textbf{age} {\textsc{alphanumeric}} Age, in \href{https://www.iso.org/iso-8601-date-and-time-format.html}{ISO8601 duration format}  
+			\item[] \textbf{ageGroup} {\textsc{categorical value (ontology label)}} Age group value, from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C20587}{NCIT Age Group ontology}, e.g. "NCIT:C27954" (Adolescent)
+			\end{itemize}
+			\item[]  \textbf{stage} {\textsc{categorical value (ontology label)}} from  \href{https://www.ebi.ac.uk/ols/ontologies/ogms}{Ontology for General Medical Science} or  \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C28108}{Disease Stage Qualifier ontology (NCIT:C28108)}, e.g. "acute onset" (OGMS:0000119)
+			\item[] \textbf{familyHistory} {\textsc{boolean}} indicating determined or self-reported presence of family history of the disease
+	\end{itemize}
+	\item[\textbf{pedigrees}] (List of) pedigree studi(es) in which the individual is part of
+	\begin{itemize}
+			\item[] \textbf{pedigreeID} {\textsc{alphanumeric value}} Pedigree identifier
+			\item[] \textbf{pedigreeRole} {\textsc{categorical value (ontology label)}} Pedigree role, defined as relationship to proband. Value from \href{https://www.hl7.org/implement/standards/fhir/2013Sep/familial-relationship.htm}{HL7 code for family relationship} or \href{https://www.ebi.ac.uk/ols/ontologies/ero/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FERO_0002112}{Relationship to Proband ontology (ERO:0002112)}, e.g. "self" (ERO:002036), "identical twin relationship" (ERO:0002041)
+			\item[] \textbf{numberOfIndividualsTested} {\textsc{numeric value}} Number of individuals in pedigree, including proband
+			\item[] \textbf{diseaseId} {\textsc{categorical value (disease code/ontology label}} Disease identifier for disease focus of the pedigree. Value from \href{https://www.who.int/classifications/icd/en/}{ICD10 disease codes} or ontology terms from disease ontologies such as HPO, OMIM, Orphanet, MONDO, e.g. "lactose intolerance" (ICD10CM:E73). Affected individuals in pedigree will have Diseases.diseaseId (diagnosed disease) matching Pedigree.diseaseId
+	\end{itemize}
+
+\item[\textbf{info}] 
+
+ \end{description}
+
+  
+ % BIOSAMPLE
+  \section*{ {\color{teal} Biosample}}
+  
+  \begin{description}
+	\item[\textbf{biosampleId}]  {\textsc{alphanumeric value}} Biosample identifier (external accession or internal ID)
+	\item[\textbf{individualId}] Reference to Individual ID (Individual.individualId)
+	\item[\textbf{description}]  {\textsc{free text}} Any relevant info about the biosample that does not fit into any other field in the schema
+	\item[\textbf{biosampleStatus}] {\textsc{categorical value (ontology label)}} from  \href{https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBI_0000747&viewMode=All&siblings=false}{Experimental Factor Ontology (EFO) Material Sample ontology} (OBI:0000747). Classification of the sample in "abnormal sample "(EFO:0009655) or "reference sample" (EFO:0009654)
+	%\item[collectionDate] {\textsc{alphanumeric value(ISO8601 duration format)}} Date of biosample collection
+	\item[\textbf{individualAgeAtCollection}] Individual's age at the time of sample collection
+	\begin{itemize}
+			\item[] \textbf{age} {\textsc{alphanumeric value}} Age, in \href{https://www.iso.org/iso-8601-date-and-time-format.html}{ISO8601 duration format}  
+			\item[] \textbf{ageGroup} {\textsc{categorical value (ontology label)}} Age group value, from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C20587}{NCIT Age Group ontology}, e.g. "NCIT:C27954" (Adolescent)
+			\end{itemize}
+	\item[\textbf{sampleOrigin}] Values specifying the origin of the biosample in organ, tissue and cell type/cell line
+	\begin{itemize} 
+	\item[]  \textbf{organ} {\textsc{categorical value (ontology label)}} from \href{https://www.ebi.ac.uk/ols/ontologies/uberon}{Uber-anatomy ontology (UBERON)} or \href{https://www.ebi.ac.uk/ols/ontologies/bto}{BRENDA tissue / enzyme source (BTO)} ontologies identifying the source organ of the biosample, e.g. "liver" (UBERON:0002107)
+	\item[] \textbf{tissue}  {\textsc{categorical value (ontology label)}} from \href{https://www.ebi.ac.uk/ols/ontologies/uberon}{Uber-anatomy ontology (UBERON)} or \href{https://www.ebi.ac.uk/ols/ontologies/bto}{BRENDA tissue / enzyme source (BTO)} ontologies identifying the source tissue of the biosample, e.g. "hepatic sinusoid" (UBERON:0001281)
+	\item[] \textbf{cellType} {\textsc{categorical value (ontology label)}} from \href{https://www.ebi.ac.uk/ols/ontologies/bto}{BRENDA tissue / enzyme source (BTO)} or \href{https://www.ebi.ac.uk/ols/ontologies/cl}{Cell Ontology (CL)} ontologies identifying the source cell type or cell line origin of the biosample, e.g. "Kupffer cell" (CL:0000091)
+	\end{itemize}
+	\item[\textbf{obtentionProcedure}] {\textsc{categorical value (ontology label)}} from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25218&viewMode=All&siblings=false}{NCIT Intervention or Procedure} ontology describing the procedure for sample obtention, e.g. "Biopsy" (NCIT:C15189)
+	\item[\textbf{cancerFeatures}] Values specifying cancer-specific features, including progression and tumor grade
+	\begin{itemize}
+			\item[] \textbf{tumorProgression} {\textsc{categorical value (ontology label)}} from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C7062&viewMode=All&siblings=false}{Neoplasm by Special Category ontology} (NCIT:C7062). Tumor progression category indicating primary, metastatic or recurrent progression, e.g. "Primary Malignant Neoplasm" (NCIT:C84509)
+			\item[] \textbf{tumorGrade} {\textsc{categorical value (ontology label)}} from \href{https://www.ebi.ac.uk/ols/ontologies/mondo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0024488}{Tumor Grading Characteristic ontology (Mondo Disease Ontology MONDO:0024488)} General tumor grading  	
+\end{itemize} 
+
+\item[\textbf{info}] 
+ \end{description}
+ 
+
+
+
+ % VARIANT ANNOTATION
+  \section*{ {\color{teal} Variant Annotation}}
+  
+  \begin{description}
+	%\item[\textbf{variantId}] {\textsc{alphanumeric value}} Variant identifier (internal ID)
+	\item[\textbf{variantAlternativeIds}] {\textsc{(list of) alphanumeric value(s)}} Cross-referencing ID(s) (CURIE(s)) for the variant in the original databases or variant-level (aggregated) databases for previously described variants, e.g. "VCV000055583.1", "CA003602"
+	\item[\textbf{genomicHGVSId}]  {\textsc{alphanumeric value}} HGVSId descriptor at genomic level, referred to genome assembly defined in Variant Identification, e.g. "NC\_000017.10:g.41199678C$>$A"
+	%\item[\textbf{transcriptHGVSId}] {\textsc{(list of) alphanumeric value(s)}} HGVSId descriptor(s) at transcript level: \\"NC\_000023.10(NM\_ 004006.2):c.357+1G$>$A"
+	\item[\textbf{proteinHGVSId}] {\textsc{(list of) alphanumeric value}} HGVSId descriptor(s) at protein level (for protein-altering variants), e.g. "NP\_009225.1:p.Glu1817Ter" or "LRG\_199p1:p.Val25Gly"
+	\item[\textbf{variantGeneRelashionship}] {\textsc{categorical value (ontology label)}} classifying the variant according to the broadness of its effect in terms of genes: "intergenic", "single-gene" (exonic, intronic), "in overlapping genes" (exonic, intronic), "spanning multiple genes"	
+		
+	\item[\textbf{geneIds}] {\textsc{(list of) alphanumeric value(s)}} HGNC ID(s) for the gene(s) affected by the variant
+	\item[\textbf{transcriptIds}] {\textsc{(list of) alphanumeric value(s)}} ENSEMBML ID(s) for the transcript(s) affected by the variant
+	\item[\textbf{molecularConsequence}] {\textsc{(list of) categorical value(s) (ontology label(s))}} from \href{http://www.sequenceontology.org}{Sequence Ontology} describing the molecular consequence of the variant for protein-altering variants, e.g. "missense variant" (SO:0001583)
+	\item[\textbf{clinicalRelevance}] (List of) descriptor(s) of clinical relevance ascribed to the variant, including the variant classification, the disease identifier and references of studies supporting the association
+	        \begin{itemize}
+		\item[] \textbf{diseaseId} Reference to DiseaseId from Disease object from Individual schema, e.g. "Hereditary breast ovarian cancer syndrome" (MONDO:0003582)
+		\item[] \textbf{variantClassification} {\textsc{Categorical value}} Value describing the effect of the variant on the disease: benign, likely benign, pathogenic, likely pathogenic or unknown
+		\item[] \textbf{references} (List of) PUBMED ID(s) of studies describing the variant-disease association, e.g. "PMID:27153395"
+                 \end{itemize}
+	\item[\textbf{info}] 
+ \end{description}
+ 
+\end{document}
+

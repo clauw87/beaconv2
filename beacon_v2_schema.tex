@@ -45,8 +45,8 @@
  %Dataset of variants, either aggregated variant-level or case-level.
  \begin{description}
   	\item[datasetId] {\textsc{categorical value}} Dataset reference ID
-	\item[datasetSource] {\textsc{categorical value}} Reference to dataset source, e.g. DECIPHER, DisGenNET
-	\item[dataseType] {\textsc{categorical value}} Type of dataset: case-level or variant-level (aggregated)  
+	\item[datasetSource] {\textsc{categorical value}} Reference to dataset source, e.g. "DECIPHER", "DisGenNET"
+	\item[datasetType] {\textsc{categorical value}} Type of dataset: "case-level" or "variant-level" (aggregated)  
   \end{description}
 
 
@@ -82,7 +82,7 @@
   \begin{description}
 	\item[\textbf{variantId}] {\textsc{alphanumeric value}} Reference to Variant ID 	\item[\textbf{variantAlternativeIds}] {\textsc{(List of) alphanumeric value(s)}} Cross-referencing ID(s) (CURIE(s)) for the variant in the original databases or variant-level (aggregated) databases for previously described variants (e.g. clinVarId, ClinGen, COSMIC), e.g. "VCV000055583.1", "CA003602"
 	% "rs80356868", nope, esto no
-	\item[\textbf{genomicHGVSId}]  {\textsc{alphanumeric value}} HGVSId descriptor at genomic level (recommended, referred to genome assembly defined in Variant Basic), e.g. "NC\_000017.10:g.41199678C$>$A"
+	\item[\textbf{genomicHGVSId}]  {\textsc{alphanumeric value}} HGVSId descriptor at genomic level (recommended, referred to genome assembly defined in Variant Identification), e.g. "NC\_000017.10:g.41199678C$>$A"
 	\item[\textbf{transcriptHGVSIds}] {\textsc{List of alphanumeric value(s)}} HGVSId descriptor at transcript level : "NC\_000023.10(NM\_ 004006.2):c.357+1G%>%A"
 	\item[\textbf{proteinHGVSIds}] {\textsc{List of alphanumeric value(s)}} HGVSId descriptor(s) at protein level (for protein-altering variants), e.g. "NP\_009225.1:p.Glu1817Ter" or LRG\_199p1:p.Val25Gly (preferred)
 	\item[genomicRegions] {\textsc{List of categorical value(s) (ontology label)}} Classification(s) of the variant according to the genomic region affected (all that apply, relative to each feature affected). Value from \href{http://ensembl.org/glossary/ENSGLOSSARY_0000134}{Ensembl Glossary (ENSGLOSS) Variant consequence ontology (ENSGLOSSARY:00000134}, e.g. "3UTR" (ENSGLOSSARY:0000159), "coding sequence variant" (ENSGLOSSARY:0000159), "upstream gene variant" (ENSGLOSSARY:0000164), "intergenic variant" (ENSGLOSSARY:0000174), "intron variant" (ENSGLOSSARY:0000161), "non-coding transcript variant" (ENSGLOSSARY:0000163)
@@ -99,7 +99,7 @@
 	%\item[annotationToolVersion] {\textsc{alphanumeric value}} Tool used for annotation and prediction of variant effects e.g "SnpEffVersion=4.3t (build 2017-11-24 1018)"
 	\item[molecularEffects] {\textsc{List of categorical value(s) (ontology label)}} Predicted effect at nucleotide level for protein affecting variants. Value from \href{http://purl.obolibrary.org/obo/SO_0001580}{Sequence ontology (SO) coding sequence variant (SO:0001580) ontology}, e.g. "synonymous variant" (SO:0001819), "nonsynonymous variant" (SO:0001992) (and classifications therein, such as "stop gained" (SO:0001587), "missense variant" (SO:0001583), "inframe indel" (SO:0001820))
 	%\item[molecularConsequence]  {\textsc{categorical value (ontology label)}} (List of) Predicted effect at protein level for protein affecting variants e.g "nonsense variant" , "missense variant"
-	\item[aminoacidChanges]  {\textsc{List of categorical value(s)}} Change at aminoacid level for protein affecting missense variants eg. "V304*"
+	\item[aminoacidChanges]  {\textsc{List of categorical value(s)}} Change at aminoacid level for protein affecting missense variants e.g. "V304*"
 	
 		%\item[\textbf{info}] 
  \end{description}
@@ -116,7 +116,7 @@
 	\item[\textbf{subjectId}]  {\textsc{alphanumeric value}} Subject reference ID (external accession or internal ID)
 	\item[\textbf{datasetId}] {\textsc{alphanumeric value}} Reference to dataset ID 
 	\item[taxonId] {\textsc{alphanumeric value)}} Taxon ID of subject
-	\item[sex] {\textsc{categorical value (ontology label)}} Sex of subject. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C27993&viewMode=All&siblings=false}{NCIT General Qualifier} ontology (NCIT:C27993): "UNKNOWN" (not assessed or not available) (NCIT:C17998), "FEMALE" (NCIT:C46113), "MALE", (NCIT:C46112) or "OTHER SEX" (NCIT:C45908)
+	\item[sex] {\textsc{categorical value (ontology label)}} Sex of subject. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C27993&viewMode=All&siblings=false}{NCIT General Qualifier} ontology (NCIT:C27993): "UNKNOWN" (not assessed or not available) (NCIT:C17998), "FEMALE" (NCIT:C46113), "MALE" (NCIT:C46112) or "OTHER SEX" (NCIT:C45908)
 	\item[\textbf{ethnicity}] {\textsc{categorical value (ontology label)}} Ethnic background of subject. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17049}{NCIT Race ontology (NCIT:C17049)}. e.g "Latin American" (NCIT:C126531)
 	\item[geographicOrigin] {\textsc{categorical value (ontology label)}} Subject's country or region of origin (birthplace or residence place regardless of ethnic origin). Value from \href{https://www.ebi.ac.uk/ols/ontologies/gaz/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGAZ_00000448}{GAZ Geographic Location ontology (GAZ:00000448)}, e.g. "United States of America" (GAZ:00002459)
 	\item[\textbf{phenotypicFeatures}] Phenotypic feature(s) observed in the subject, defined by phenotype, date, type or age of onset and level/ severity. (List of:)
@@ -174,13 +174,17 @@
 	%		\item[] \textbf{ageGroup} {\textsc{categorical value (ontology label)}} Age group value, from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C20587}{NCIT Age Group ontology}, e.g. "NCIT:C27954" (Adolescent)
 	%		\end{itemize}
 	%\end{itemize} 
-
 	\item[\textbf{pedigrees}] Pedigree(s) to which the subject belongs (List of:)
 	\begin{itemize}
 			\item[] \textbf{pedigreeId} {\textsc{alphanumeric value}} Reference to pedigree ID (external accession) 
 			\item[] \textbf{pedigreeDisease} {\textsc{categorical value (disease code /ontology label)}} Disease ID. Value from \href{https://www.who.int/classifications/icd/en/}{ICD10 disease codes} or ontology terms from disease ontologies such as HPO, OMIM, Orphanet, MONDO, e.g. "lactose intolerance" (HP:0004789, ICD10CM:E73)
-			\item[] \textbf{pedigreeRole} {\textsc{categorical value (ontology label)}} Pedigree role, defined as relationship to proband. Value from \href{https://www.hl7.org/implement/standards/fhir/2013Sep/familial-relationship.htm}{HL7 code for family relationship} or \href{https://www.ebi.ac.uk/ols/ontologies/ero/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FERO_0002112}{Relationship to Proband ontology (ERO:0002112)}, e.g. "self" (ERO:002036), "identical twin relationship" (ERO:0002041)
-			\item[] \textbf{affectedStatus} {\textsc{categorical value (ontology label)}} Affected status of subject in disease of pedigree
+			\item[] \textbf{pedigreeRole} {\textsc{categorical value (ontology label)}} Pedigree role, defined as relationship to proband. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C41256}{Family member ontology (NCIT:C41256)}, e.g. "proband" (NCIT:C64435), "identical twin" (NCIT:C73429), "mother" (NCIT:C25189)
+			
+			%\href{https://www.hl7.org/implement/standards/fhir/2013Sep/familial-relationship.htm}{HL7 code for family relationship} or 
+%or \href{https://www.ebi.ac.uk/ols/ontologies/ero/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FERO_0002112}{Relationship to Proband ontology (ERO:0002112)}
+
+%, e.g. "self" (ERO:002036), "identical twin relationship" (ERO:0002041)
+			\item[] \textbf{affectedStatus} {\textsc{categorical value}} Affected status of subject in disease of pedigree: "affected" or "unaffected"
 			\item[] \textbf{numIndTested} {\textsc{numeric value}} Number of subjects in pedigree
 	\end{itemize}
 
@@ -198,9 +202,10 @@
 	\item[\textbf{description}]  {\textsc{free text}} Any relevant info about the biosample that does not fit in any field in the schema
 	\item[\textbf{biosampleStatus}] {\textsc{categorical value (ontology label)}} Classification of biosample based on their role in study. Value from  \href{https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBI_0000747&viewMode=All&siblings=false}{Experimental Factor Ontology (EFO) Material Sample ontology} (OBI:0000747) Classification of the sample in "abnormal sample "(EFO:0009655) or "reference sample" (EFO:0009654)
 	\item[collectionDate] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Date of biosample collection
-	\item[\textbf{subjectAgeAtCollection}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Subject's age at  the time of sample collection
-	\item[\textbf{sampleOriginType}] {\textsc{categorical value (ontology label)}} Category of sample origin. Value from \href{http://purl.obolibrary.org/obo/BFO_0000040}{Ontology for Biomedical Investigations (OBI) material entity (BFO:0000040) ontology}, e.g. "specimen from organism" (OBI:0001479), "xenograft" (OBI:0100058), "cell culture" (OBI:0001876), "environmental swab specimen" (OBI:0002613)
-	\item[sampleOriginDetail] {\textsc{categorical value (ontology label)}} Specific instance of sample origin matching the category set in \textbf{sampleOriginType}. Value from \href{https://www.ebi.ac.uk/ols/ontologies/uberon}{Uber-anatomy ontology (UBERON)} or \href{https://www.ebi.ac.uk/ols/ontologies/bto}{BRENDA tissue / enzyme source (BTO)}, \href{http://purl.obolibrary.org/obo/BFO_0000040}{Ontology for Biomedical Investigations (OBI)} or \href{www.ebi.ac.uk/ols/ontologies/clo}{Cell Line Ontology (CLO)}, e.g. "cerebellar vermis" (UBERON:0004720), "HEK-293T cell" (BTO:0002181), "nasopharyngeal swab specimen" (OBI:0002606), "cerebrospinal fluid specimen" (OBI:0002502)
+	\item[\textbf{subjectAgeAtCollection}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Subject's age at  the time of biosample collection
+	\item[\textbf{sampleOrigin}] Origin of biosample (List of:)
+	\item[] \textbf{sampleOriginType} {\textsc{categorical value (ontology label)}} Category of sample origin. Value from \href{http://purl.obolibrary.org/obo/BFO_0000040}{Ontology for Biomedical Investigations (OBI) material entity (BFO:0000040) ontology}, e.g. "specimen from organism" (OBI:0001479), "xenograft" (OBI:0100058), "cell culture" (OBI:0001876), "cell specimen" (OBI:0001468), "environmental swab specimen" (OBI:0002613)
+	\item[] \textbf{sampleOriginDetail} {\textsc{categorical value (ontology label)}} Specific instance of sample origin matching the category set in \textbf{sampleOriginType}. Value from \href{https://www.ebi.ac.uk/ols/ontologies/uberon}{Uber-anatomy ontology (UBERON)} or \href{https://www.ebi.ac.uk/ols/ontologies/bto}{BRENDA tissue / enzyme source (BTO)}, \href{http://purl.obolibrary.org/obo/BFO_0000040}{Ontology for Biomedical Investigations (OBI)} or \href{www.ebi.ac.uk/ols/ontologies/clo}{Cell Line Ontology (CLO)}, e.g. "cerebellar vermis" (UBERON:0004720), "HEK-293T cell" (BTO:0002181), "nasopharyngeal swab specimen" (OBI:0002606), "cerebrospinal fluid specimen" (OBI:0002502)
 	\item[\textbf{obtentionProcedure}] {\textsc{categorical value (ontology label)}} Ontology ID from \href{http://purl.obolibrary.org/obo/NCIT_C25218}{NCI Thesaurus (NCIT) Intervention or Procedure (NCIT:C25218) ontology}. e.g. "biopsy" (NCIT:C15189) % (see "bronchoalveolar lavage", "nasopharyngeal swab" (?)
 	\item[\textbf{cancerFeatures}] Values specifying cancer-specific features, including progression and tumor grade
 	\begin{itemize}
@@ -235,6 +240,7 @@
   
   \begin{description}
 	\item[analysisId] {\textsc{alphanumeric value}} Analysis reference ID (external accession or internal ID)
+	\item[runId] {\textsc{alphanumeric value}} Reference to run ID
 	%, e.g. "SRR10903401"
 	\item[\textbf{analysisDate}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Date at which analysis was performed  
 	\item[pipelineName]  {\textsc{categorical value}} Analysis pipeline and version if a standardized pipeline was used
@@ -253,7 +259,7 @@
   	\item[\textbf{variantId}]  {\textsc{alphanumeric value}} Reference to Variant ID 	
 	\item[\textbf{analysisId}] Reference to analysis ID
 	\item[\textbf{biosampleId}] Reference to biosample ID
-	\item[\textbf{subjectId}] Reference to subject ID
+	%\item[\textbf{subjectId}] Reference to subject ID (alternatively, if Biosample is not provided)
 	\item[variantFrequency] {\textsc{numeric value}} Variant frequency in biosample
 	%, as in AF field in VCF for case-level datasets. 
 	%Frequency in dataset for aggregated variant-level datasets.

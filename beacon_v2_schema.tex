@@ -115,19 +115,19 @@
 	%\item[taxonId] If cell line? 
 	\item[\textbf{subjectId}]  {\textsc{alphanumeric value}} Subject reference ID (external accession or internal ID)
 	\item[\textbf{datasetId}] {\textsc{alphanumeric value}} Reference to dataset ID 
-	\item[taxonId] {\textsc{alphanumeric value)}} Taxon ID of subject
+	\item[taxonId] {\textsc{alphanumeric value)}} Taxon ID of subject, e.g. "9606"
 	\item[sex] {\textsc{categorical value (ontology label)}} Sex of subject. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C27993&viewMode=All&siblings=false}{NCIT General Qualifier} ontology (NCIT:C27993): "UNKNOWN" (not assessed or not available) (NCIT:C17998), "FEMALE" (NCIT:C46113), "MALE" (NCIT:C46112) or "OTHER SEX" (NCIT:C45908)
 	\item[\textbf{ethnicity}] {\textsc{categorical value (ontology label)}} Ethnic background of subject. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17049}{NCIT Race ontology (NCIT:C17049)}. e.g "Latin American" (NCIT:C126531)
 	\item[geographicOrigin] {\textsc{categorical value (ontology label)}} Subject's country or region of origin (birthplace or residence place regardless of ethnic origin). Value from \href{https://www.ebi.ac.uk/ols/ontologies/gaz/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGAZ_00000448}{GAZ Geographic Location ontology (GAZ:00000448)}, e.g. "United States of America" (GAZ:00002459)
 	\item[\textbf{phenotypicFeatures}] Phenotypic feature(s) observed in the subject, defined by phenotype, date, type or age of onset and level/ severity. (List of:)
 	\begin{itemize}
 			\item[] \textbf{phenotypeId} {\textsc{categorical value (ontology label)}} Phenotypic feature observed. Value from \href{http:purl.obolibrary.org/obo/HP_0000001}{Human Phenotype Ontology (HPO)} 
-			\item[] \textbf{dateOfOnset} {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Date of onset/observation of phenotype   
+			\item[] \textbf{dateOfOnset} {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 date format)}}} Date of onset/observation of phenotype, e.g. "2010-07-10"
 			\item[] \textbf{onsetType} {\textsc{categorical value (ontology label)}}
  Onset type. Value from \href{http://purl.obolibrary.org/obo/HP_0003674}{HPO Onset ontology (HP:0003674)}, e.g. "congenital onset" (HP:0003577), "adult onset" (HP:0003581)
   			\item[] \textbf{ageOfOnset} Subject's age at onset/observation of phenotype
 			\begin{itemize}
- 			\item[] \textbf{age} {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Age  
+ 			\item[] \textbf{age} {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Age, e.g. "P32Y6M"
 			\item[] \textbf{ageGroup} {\textsc{categorical value (ontology label)}} Age group. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C20587}{NCIT Age Group ontology}, e.g. "NCIT:C27954" (Adolescent)
 			\end{itemize}
 			\item[] \textbf{level/severity}  {\textsc{categorical value (ontology label)}} Level/severity when and as applicable to phenotype observed. Value from \href{http://purl.obolibrary.org/obo/HP_0012824}{Human Phenotype Ontology (HPO) Severity ontology (HP:0012824)}, e.g. "severe" (HP:0012828)
@@ -135,12 +135,12 @@
 	\item[diseases] Disease(s) been diagnosed to the subject, defined by disease ID, date, type or age of onset, stage, level/severity and the presence of family history. (List of:)
 	\begin{itemize}
 			\item[]  \textbf{diseaseId} {\textsc{categorical value (disease code /ontology label)}} Disease ID. Value from \href{https://www.who.int/classifications/icd/en/}{ICD10 disease codes} or ontology terms from disease ontologies such as HPO, OMIM, Orphanet, MONDO, e.g. "lactose intolerance" (HP:0004789, ICD10CM:E73)
-			\item[] \textbf{dateOfOnset} {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Date of onset/diagnosis of disease
+			\item[] \textbf{dateOfOnset} {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 date format)}}} Date of onset/diagnosis of disease, e.g. "1987-10-28"
 			\item[] \textbf{onsetType} {\textsc{categorical value (ontology label)}}
  Onset type. Value from \href{http://purl.obolibrary.org/obo/HP_0003674}{HPO Onset ontology (HP:0003674)}, e.g. "congenital onset" (HP:0003577), "adult onset" (HP:0003581)
 			\item[]  \textbf{ageOfOnset} Subject's age at onset/ diagnosis of disease
 			\begin{itemize}
-			\item[] \textbf{age} {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Age  
+			\item[] \textbf{age} {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Age, e.g. "P6M"  
 			\item[] \textbf{ageGroup} {\textsc{categorical value (ontology label)}} Age group. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C20587}{NCIT Age Group ontology}, e.g. "NCIT:C27954" (Adolescent)
 			\end{itemize}
 			\item[]  \textbf{stage} {\textsc{categorical value (ontology label)}} Stage of disease. Value from \href{https://www.ebi.ac.uk/ols/ontologies/ogms}{Ontology for General Medical Science} or \href{https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C28108}{Disease Stage Qualifier ontology (NCIT:C28108)}, e.g. "acute onset" (OGMS:0000119)
@@ -201,8 +201,8 @@
 	\item[\textbf{subjectId}] Reference to subject ID
 	\item[\textbf{description}]  {\textsc{free text}} Any relevant info about the biosample that does not fit in any field in the schema
 	\item[\textbf{biosampleStatus}] {\textsc{categorical value (ontology label)}} Classification of biosample based on their role in study. Value from  \href{https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBI_0000747&viewMode=All&siblings=false}{Experimental Factor Ontology (EFO) Material Sample ontology} (OBI:0000747) Classification of the sample in "abnormal sample "(EFO:0009655) or "reference sample" (EFO:0009654)
-	\item[collectionDate] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Date of biosample collection
-	\item[\textbf{subjectAgeAtCollection}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Subject's age at  the time of biosample collection
+	\item[collectionDate] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 date format)}}} Date of biosample collection, e.g. "2019-12"
+	\item[\textbf{subjectAgeAtCollection}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Subject's age at  the time of biosample collection, e.g "P72Y6M19D"
 	\item[\textbf{sampleOriginDescriptors}] Descriptor(s) of origin of biosample. (List of:)
 	\begin{itemize}
 	\item[] \textbf{sampleOriginType} {\textsc{categorical value (ontology label)}} Category of sample origin. Value from \href{http://purl.obolibrary.org/obo/BFO_0000040}{Ontology for Biomedical Investigations (OBI) material entity (BFO:0000040) ontology}, e.g. "specimen from organism" (OBI:0001479), "xenograft" (OBI:0100058), "cell culture" (OBI:0001876), "cell specimen" (OBI:0001468), "environmental swab specimen" (OBI:0002613)
@@ -226,7 +226,7 @@
 	\item[runId] {\textsc{alphanumeric value}} Run reference ID (external accession or internal ID)
 	%, e.g. "SRR10903401"
 	\item[biosampleId] {\textsc{alphanumeric value}}  Reference to sample ID
-	\item[\textbf{runDate}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Date at which run was performed	
+	\item[\textbf{runDate}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 date format)}}} Date at which run was performed	, e.g, "2019-12-28"
 	\item[librarySource] {\textsc{categorical value}}  Sequencing library source, e.g. "Metagenomic", "Viral RNA"
 	\item[libraryStrategy]  {\textsc{categorical value}} Sequencing library strategy, e.g. "WGS"
 	\item[librarySelection] {\textsc{categorical value}} Selection method for sequencing library preparation, e.g. "RANDOM", "RT-PCR"
@@ -244,8 +244,8 @@
 	\item[analysisId] {\textsc{alphanumeric value}} Analysis reference ID (external accession or internal ID)
 	\item[runId] {\textsc{alphanumeric value}} Reference to run ID
 	%, e.g. "SRR10903401"
-	\item[\textbf{analysisDate}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Date at which analysis was performed  
-	\item[pipelineName]  {\textsc{categorical value}} Analysis pipeline and version if a standardized pipeline was used
+	\item[\textbf{analysisDate}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 date format)}}} Date at which analysis was performed, e.g., "2020-01-10"
+	\item[pipelineName]  {\textsc{categorical value}} Analysis pipeline and version, e.g., "Isaac Whole Genome Sequencing; version 3.0.0.0"
 	\item[pipelineRef]  Link to Analysis pipeline resource
 	\item[aligner]  {\textsc{categorical value}} Mapping/Alignment software e.g. "bwa-0.7.8"
 	  \item[variantCaller]  {\textsc{categorical value}} Variant calling software/ pipeline, e.g. "GATK4.0" % or new endpoint for Experiment/Dataset?

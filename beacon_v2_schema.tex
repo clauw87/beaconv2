@@ -83,9 +83,9 @@
 	\item[\textbf{variantId}] {\textsc{alphanumeric value}} Reference to Variant ID 	\item[\textbf{variantAlternativeIds}] {\textsc{(List of) alphanumeric value(s)}} Cross-referencing ID(s) (CURIE(s)) for the variant in the original databases or variant-level (aggregated) databases for previously described variants (e.g. clinVarId, ClinGen, COSMIC), e.g. "VCV000055583.1", "CA003602"
 	% "rs80356868", nope, esto no
 	\item[\textbf{genomicHGVSId}]  {\textsc{alphanumeric value}} HGVSId descriptor at genomic level (recommended, referred to genome assembly defined in Variant Identification), e.g. "NC\_000017.10:g.41199678C$>$A"
-	\item[\textbf{transcriptHGVSIds}] {\textsc{List of alphanumeric value(s)}} HGVSId descriptor at transcript level : "NC\_000023.10(NM\_ 004006.2):c.357+1G%>%A"
-	\item[\textbf{proteinHGVSIds}] {\textsc{List of alphanumeric value(s)}} HGVSId descriptor(s) at protein level (for protein-altering variants), e.g. "NP\_009225.1:p.Glu1817Ter" or LRG\_199p1:p.Val25Gly (preferred)
-	\item[genomicRegions] {\textsc{List of categorical value(s) (ontology label)}} Classification(s) of the variant according to the genomic region affected (all that apply, relative to each feature affected). Value from \href{http://ensembl.org/glossary/ENSGLOSSARY_0000134}{Ensembl Glossary (ENSGLOSS) Variant consequence ontology (ENSGLOSSARY:00000134}, e.g. "3UTR" (ENSGLOSSARY:0000159), "coding sequence variant" (ENSGLOSSARY:0000159), "upstream gene variant" (ENSGLOSSARY:0000164), "intergenic variant" (ENSGLOSSARY:0000174), "intron variant" (ENSGLOSSARY:0000161), "non-coding transcript variant" (ENSGLOSSARY:0000163)
+	\item[\textbf{transcriptHGVSIds}] {\textsc{(List of) alphanumeric value(s)}} HGVSId descriptor at transcript level : "NC\_000023.10(NM\_ 004006.2):c.357+1G%>%A"
+	\item[\textbf{proteinHGVSIds}] {\textsc{(List of) alphanumeric value(s)}} HGVSId descriptor(s) at protein level (for protein-altering variants), e.g. "NP\_009225.1:p.Glu1817Ter" or LRG\_199p1:p.Val25Gly (preferred)
+	\item[genomicRegions] {\textsc{(List of) categorical value(s) (ontology label)}} Classification(s) of the variant according to the genomic region affected (all that apply, relative to each feature affected). Value from \href{http://ensembl.org/glossary/ENSGLOSSARY_0000134}{Ensembl Glossary (ENSGLOSS) Variant consequence ontology (ENSGLOSSARY:00000134}, e.g. "3UTR" (ENSGLOSSARY:0000159), "coding sequence variant" (ENSGLOSSARY:0000159), "upstream gene variant" (ENSGLOSSARY:0000164), "intergenic variant" (ENSGLOSSARY:0000174), "intron variant" (ENSGLOSSARY:0000161), "non-coding transcript variant" (ENSGLOSSARY:0000163)
 	%Value from \href{http://purl.obolibrary.org/obo/OGI_0000002}{Ontology for genetic interval (OGI) (OGI:0000002)}, e.g "intergenic region" (OGI:0000044), "polypeptide coding gene" (), "RNA gene" (),  "pseudogene" ()
 
 %Value from \href{http://purl.obolibrary.org/obo/VariO_0001}{Variation Ontology (VARIO)}
@@ -97,9 +97,9 @@
 			\item[]  \textbf{featureID} {\textsc{(alphanumeric value)}} ID /accession/name of feature affected by the variant, matching \textbf{class}, e.g. "TP53", "GeneID:43740578"
 	\end{itemize} 
 	%\item[annotationToolVersion] {\textsc{alphanumeric value}} Tool used for annotation and prediction of variant effects e.g "SnpEffVersion=4.3t (build 2017-11-24 1018)"
-	\item[molecularEffects] {\textsc{List of categorical value(s) (ontology label)}} Predicted effect at nucleotide level for protein affecting variants. Value from \href{http://purl.obolibrary.org/obo/SO_0001580}{Sequence ontology (SO) coding sequence variant (SO:0001580) ontology}, e.g. "synonymous variant" (SO:0001819), "nonsynonymous variant" (SO:0001992) (and classifications therein, such as "stop gained" (SO:0001587), "missense variant" (SO:0001583), "inframe indel" (SO:0001820))
+	\item[molecularEffects] {\textsc{(List of) categorical value(s) (ontology label)}} Predicted effect at nucleotide level for protein affecting variants. Value from \href{http://purl.obolibrary.org/obo/SO_0001580}{Sequence ontology (SO) coding sequence variant (SO:0001580) ontology}, e.g. "synonymous variant" (SO:0001819), "nonsynonymous variant" (SO:0001992) (and classifications therein, such as "stop gained" (SO:0001587), "missense variant" (SO:0001583), "inframe indel" (SO:0001820))
 	%\item[molecularConsequence]  {\textsc{categorical value (ontology label)}} (List of) Predicted effect at protein level for protein affecting variants e.g "nonsense variant" , "missense variant"
-	\item[aminoacidChanges]  {\textsc{List of categorical value(s)}} Change at aminoacid level for protein affecting missense variants e.g. "V304*"
+	\item[aminoacidChanges]  {\textsc{(List of) categorical value(s)}} Change at aminoacid level for protein affecting missense variants e.g. "V304*"
 	
 		%\item[\textbf{info}] 
  \end{description}
@@ -203,9 +203,11 @@
 	\item[\textbf{biosampleStatus}] {\textsc{categorical value (ontology label)}} Classification of biosample based on their role in study. Value from  \href{https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBI_0000747&viewMode=All&siblings=false}{Experimental Factor Ontology (EFO) Material Sample ontology} (OBI:0000747) Classification of the sample in "abnormal sample "(EFO:0009655) or "reference sample" (EFO:0009654)
 	\item[collectionDate] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Date of biosample collection
 	\item[\textbf{subjectAgeAtCollection}] {\textsc{alphanumeric value \href{https://www.iso.org/iso-8601-date-and-time-format.html}{(ISO8601 duration format)}}} Subject's age at  the time of biosample collection
-	\item[\textbf{sampleOrigin}] Origin of biosample (List of:)
+	\item[\textbf{sampleOriginDescriptors}] Descriptor(s) of origin of biosample. (List of:)
+	\begin{itemize}
 	\item[] \textbf{sampleOriginType} {\textsc{categorical value (ontology label)}} Category of sample origin. Value from \href{http://purl.obolibrary.org/obo/BFO_0000040}{Ontology for Biomedical Investigations (OBI) material entity (BFO:0000040) ontology}, e.g. "specimen from organism" (OBI:0001479), "xenograft" (OBI:0100058), "cell culture" (OBI:0001876), "cell specimen" (OBI:0001468), "environmental swab specimen" (OBI:0002613)
 	\item[] \textbf{sampleOriginDetail} {\textsc{categorical value (ontology label)}} Specific instance of sample origin matching the category set in \textbf{sampleOriginType}. Value from \href{https://www.ebi.ac.uk/ols/ontologies/uberon}{Uber-anatomy ontology (UBERON)} or \href{https://www.ebi.ac.uk/ols/ontologies/bto}{BRENDA tissue / enzyme source (BTO)}, \href{http://purl.obolibrary.org/obo/BFO_0000040}{Ontology for Biomedical Investigations (OBI)} or \href{www.ebi.ac.uk/ols/ontologies/clo}{Cell Line Ontology (CLO)}, e.g. "cerebellar vermis" (UBERON:0004720), "HEK-293T cell" (BTO:0002181), "nasopharyngeal swab specimen" (OBI:0002606), "cerebrospinal fluid specimen" (OBI:0002502)
+	\end{itemize}
 	\item[\textbf{obtentionProcedure}] {\textsc{categorical value (ontology label)}} Ontology ID from \href{http://purl.obolibrary.org/obo/NCIT_C25218}{NCI Thesaurus (NCIT) Intervention or Procedure (NCIT:C25218) ontology}. e.g. "biopsy" (NCIT:C15189) % (see "bronchoalveolar lavage", "nasopharyngeal swab" (?)
 	\item[\textbf{cancerFeatures}] Values specifying cancer-specific features, including progression and tumor grade
 	\begin{itemize}
@@ -295,15 +297,15 @@
 	\begin{itemize}
 				\item[] \textbf{phenotypeId} {\textsc{categorical value (ontology label)}} Descriptor of phenotype associated. Value from \href{http:purl.obolibrary.org/obo/HP_0000001}{Human Phenotype Ontology (HPO)}
 				\item[] \textbf{phenotypeEffect} {\textsc{categorical value (ontology label)}} Phenotypic effect classification. Value from \href{http://purl/obolibrary.org/obo/SO_0001769}{Sequence types and features ontology (SO) variant phenotype (SO:0001769)}, e.g. "benign variant" (SO:0001770)
-				\item[] \textbf{alleleOrigin} {\textsc{categorical value (ontology label)}} (List of) Annotation(s) on allele origins in which the variant has been found in association to phenotype. Value(s) from \href{http://purl.obolibrary.org/obo/SO_0001762}{Sequence types and features ontology (SO) variant origin (SO:0001762) ontology}, e.g. "somatic variant" (SO:0001777), "germline variant" (SO:0001778), "de novo variant" (SO:0001781)
-				\item[] \textbf{references} (List of) PMID(s)
+				\item[] \textbf{alleleOrigin} {\textsc{(List of) categorical value(s) (ontology label)}} Annotation(s) on allele origins in which the variant has been found in association to phenotype. Value(s) from \href{http://purl.obolibrary.org/obo/SO_0001762}{Sequence types and features ontology (SO) variant origin (SO:0001762) ontology}, e.g. "somatic variant" (SO:0001777), "germline variant" (SO:0001778), "de novo variant" (SO:0001781)
+				\item[] \textbf{references} {\textsc{(List of) publication identifier(s)}} Reference(s) to publication(s) describing association, as PMID(s), e.g. "PMID:17024373"
 	\end{itemize} 
 	\item[\textbf{clinicalRelevances}] Annotated effect on disease. (List of:)
 			\begin{itemize}
 				\item[] \textbf{diseaseId} {\textsc{categorical value (disease code/ ontology label)}} Descriptor of disease associated. Value from \href{https://www.who.int/classifications/icd/en/}{ICD10 disease codes} or ontology terms from disease ontologies such as HPO, OMIM, Orphanet, MONDO. e.g. "lactose intolerance" (HP:0004789, ICD10CM:E73)
 				\item[] \textbf{clinicalEffect} {\textsc{categorical value (ontology label)}} Clinical effect classification. Value from \href{http://purl/obolibrary.org/obo/SO_0001769}{Sequence types and features ontology (SO) variant phenotype (SO:0001769)}, e.g. "disease associated variant" (SO:0001771)
-				\item[] \textbf{alleleOrigin} {\textsc{categorical value(s) (ontology label)}} (List of) Annotation(s) on allele origins in which the variant has been in association to condition. Value(s) from \href{http://purl.obolibrary.org/obo/SO_0001762}{Sequence types and features ontology (SO) variant origin (SO:0001762) ontology}, e.g. "somatic variant" (SO:0001777), "germline variant" (SO:0001778), "de novo variant" (SO:0001781)
-				\item[] \textbf{references} (List of) PMID(s)
+				\item[] \textbf{alleleOrigin} {\textsc{(List of) categorical value(s) (ontology label)}} Annotation(s) on allele origins in which the variant has been in association to condition. Value(s) from \href{http://purl.obolibrary.org/obo/SO_0001762}{Sequence types and features ontology (SO) variant origin (SO:0001762) ontology}, e.g. "somatic variant" (SO:0001777), "germline variant" (SO:0001778), "de novo variant" (SO:0001781)
+				\item[] \textbf{references} {\textsc{(List of) publication identifier(s)}} Reference(s) to publication(s) describing association, as PMID(s), e.g. "PMID:19793655"
 		 \end{itemize} 
 
 	%\item[\textbf{info}] 
